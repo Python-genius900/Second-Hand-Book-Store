@@ -1,0 +1,182 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+<style>
+    .diagonal-box {
+        background-image: linear-gradient(45deg, #6303B1, #ff0099);
+        transform: skewY(-11deg);
+    } 
+    .content { 	
+        max-width: 60em;
+        margin: 0 auto; 
+        color:white;
+        font-size:25px;
+    }
+</style>
+
+
+<div class="crumbs text-center" style="margin-top:10%">
+    <div class="container">
+        <div class="row">
+            <ul class="btn-group btn-breadcrumb bc-list">
+                <li class="btn btn1">
+                    <a href="{% url 'home' %}">
+                        <i class="glyphicon glyphicon-home"></i>
+                    </a>
+                </li>
+                <li class="btn btn2">
+                    <a href="#">product catalogue</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--//breadcrumbs ends here-->
+<!-- Shop -->
+<div class="innerf-pages section">
+    <div class="container-cart">
+        <!-- product left -->
+        <div class="side-bar col-md-3">
+            <!--preference -->
+            <div class="left-side">
+                <h3 class="shopf-sear-headits-sear-head">
+                    Categories</h3>
+                <ul>
+
+                    {% for i in category %}
+                    <li>
+                        <input type="checkbox" class="checked" value="{{i.name}}" id="{{i.id}}" {% if i.name in request.GET.category %}checked{% endif %} onclick="filterbycat('{{i.id}}')">
+                        <span class="span">{{i.name}}</span>
+                    </li>
+                    {% endfor %}
+                    
+
+                </ul>
+            </div>
+        </div>
+        <!-- //product left -->
+        <!-- product right -->
+        <div class="left-ads-display col-md-9">
+            <div class="wrapper_top_shop">
+                <!-- product-sec1 -->
+                <div class="product-sec1">
+                    <!-- row1-->
+                    {% for i in pro1 %}
+                    <div class="col-md-3 product-men">
+                        <div class="product-chr-info chr">
+
+                            <div class="diagonal-box">
+                                <div class="content" align="center"> 
+                                    {% if i.status == "Sold" %}
+                                    out of stock
+                                    {% endif %}
+                                    <div class="thumbnail">
+                                        <a href="{% url 'product_detail' i.id %}">
+                                            <img src="{{i.image.url}}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                           
+                            <div class="caption">
+                                <h4>{{i.name}}</h4>
+                                <p>{{i.author}}</p>
+                                <div class="matrlf-mid">
+                                    <ul class="rating">
+                                        <li>
+                                            <a href="#">
+                                                <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="fa fa-star gray-star" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="fa fa-star gray-star" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul class="price-list">
+                                        <li> {{i.price}}.00 Rs</li>
+                                        <li>
+                                            200.00 Rs
+                                        </li>
+                                    </ul>
+
+                                    <div class="clearfix"> </div>
+                                </div>
+                                {% if i.user.is_staff %}
+                                <form action="{% url 'add_cart' i.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="chr-cart pchr-cart">Add to cart
+                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                    </button>
+                                    <a href="#" data-toggle="modal" data-target="#myModal1"></a>
+                                </form>
+                                {% else %}
+                                <a href="{% url 'product_detail' i.id %}">
+                                    <button class="chr-cart pchr-cart" {% if i.status == "Sold" %}
+                                    disabled
+                                    {% endif %}>Contact to seller
+                                    </button>
+                                </a>
+                                {% endif %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <h4>No Any Product Available</h4>
+                    {% endfor %}
+                    
+                    <div class="clearfix"></div>
+
+                </div>
+
+                <!-- //product-sec1 -->
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+</div>
+<script>
+    function filterbycat(pid){
+        var cat = "";
+        prevvalue = '{{request.GET.category}}';
+        if(prevvalue.includes(document.getElementById(pid).value)){
+            document.getElementById(pid).checked = false;
+            if(prevvalue.includes(document.getElementById(pid).value+",")){
+                prevvalue = prevvalue.replace(document.getElementById(pid).value + ",", "");
+            }else{
+                prevvalue = prevvalue.replace(document.getElementById(pid).value, "");
+            }
+            
+            cat = prevvalue;
+        }
+        else if (prevvalue){
+            cat = prevvalue + "," + document.getElementById(pid).value;
+        }
+        else{
+            cat = document.getElementById(pid).value;
+        }
+        window.location = "/view_product/0?category="+cat;
+    }
+</script>
+{% endblock %}

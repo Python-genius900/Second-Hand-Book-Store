@@ -1,0 +1,192 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+
+<div class="crumbs text-center">
+    <div class="container">
+        <div class="row">
+            <ul class="btn-group btn-breadcrumb bc-list">
+                <li class="btn btn1">
+                    <a href="index.html">
+                        <i class="glyphicon glyphicon-home"></i>
+                    </a>
+                </li>
+                <li class="btn btn2">
+                    <a href="shop.html">Product Catalogue</a>
+                </li>
+                <li class="btn btn3 btn3a">
+                    <a href="single_product.html">Single product</a>
+                </li>
+                <li class="btn btn4">
+                    <a href="checkout.html">Checkout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--//breadcrumbs ends here-->
+<!--checkout-->
+<div class="innerf-pages section">
+    <div class="container">
+        <div class="privacy about">
+            <h4 class="rad-txt">
+                <span class="abtxt1">review</span>
+                <span class="abtext">your order</span>
+            </h4>
+
+            <div class="checkout-right">
+                <h4>Your shopping cart contains:
+                    <span>{{cart.count}} Products</span>
+                </h4>
+                <table class="timetable_sub table-responsive">
+                    <thead>
+                        <tr>
+                            <th>SL No.</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Product Name</th>
+
+                            <th>Price</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in cart %}
+
+                        <tr class="rem{{forloop.counter}}">
+                            <td class="invert">{{forloop.counter}}</td>
+                            <td class="invert-image">
+                                <a href="single_product.html">
+                                    <img src="{{i.product.image.url}}" alt=" " class="img-responsive">
+                                </a>
+                            </td>
+                            <td class="invert">
+                                <div class="quantity">
+                                    <div class="quantity-select">
+                                        <div class="entry value-minus {% if i.quantity == '1' %}value{% endif %}" {% if i.quantity != '1' %}onclick="mcartnumber('{{i.id}}', 'myid-{{forloop.counter}}')"{% endif %}>&nbsp;</div>
+                                        <div class="entry value">
+                                            <span id="myid-{{forloop.counter}}">{{i.quantity}}</span>
+                                        </div>
+                                        <div class="entry value-plus {% if i.quantity == '5' %}value{% endif %} active" {% if i.quantity != '5' %}onclick="pcartnumber('{{i.id}}', 'myid-{{forloop.counter}}')"{% endif %}>&nbsp;</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="invert">{{i.product.name}}</td>
+
+                            <td class="invert">${{i.product.price}}.00</td>
+                            <td class="invert">
+                                <a href="/remove_cart/{{i.id}}">
+                                <div class="rem">
+                                    <div class="close1"> </div>
+                                </div>
+                                </a>
+
+                            </td>
+                        </tr>
+                        
+                        {% empty %}
+                        <tr>
+                        <td colspan="6">Data not found</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="checkout-left">
+                <div class="col-md-4 checkout-left-basket">
+                    <h4>Continue to basket</h4>
+                    <ul>
+                        {% for i in cart %}
+                        <li>{{i.product.name}}
+                            <i>-</i>
+                            <span>${{i.total}}.00 </span>
+                        </li>
+                        {% endfor %}
+                        <li>Total
+                            <i>-</i>
+                            <span>${{total}}.00</span>
+                        </li>
+                        {% if cart %}
+                        <li>
+                            <a href="{% url 'booking' book %}"><button type="button" class="btn btn-primary" style="width:100%">Continue Booking</button></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script>
+    chr.render();
+
+    chr.cart.on('new_checkout', function (evt) {
+        var items, len, i;
+
+        if (this.subtotal() > 0) {
+            items = this.items();
+
+            for (i = 0, len = items.length; i < len; i++) {}
+        }
+    });
+</script>
+<!-- //cart-js -->
+<!--quantity-->
+<script>
+    $('.value-plus').on('click', function () {
+        var divUpd = $(this).parent().find('.value'),
+            newVal = parseInt(divUpd.text(), 10) + 1;
+        divUpd.text(newVal);
+    });
+
+    $('.value-minus').on('click', function () {
+        var divUpd = $(this).parent().find('.value'),
+            newVal = parseInt(divUpd.text(), 10) - 1;
+        if (newVal >= 1) divUpd.text(newVal);
+    });
+</script>
+<!--quantity-->
+<!-- FadeOut-Script -->
+<script>
+    $(document).ready(function (c) {
+        $('.close1').on('click', function (c) {
+            $('.rem1').fadeOut('slow', function (c) {
+                $('.rem1').remove();
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function (c) {
+        $('.close2').on('click', function (c) {
+            $('.rem2').fadeOut('slow', function (c) {
+                $('.rem2').remove();
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function (c) {
+        $('.close3').on('click', function (c) {
+            $('.rem3').fadeOut('slow', function (c) {
+                $('.rem3').remove();
+            });
+        });
+    });
+</script>
+<!--// FadeOut-Script -->
+<script>
+    function mcartnumber(pid, myid){
+        window.location = "/cart?mid="+pid;
+    }
+
+    function pcartnumber(pid, myid){
+        window.location = "/cart?pid="+pid;
+    }
+</script>
+{% endblock %}

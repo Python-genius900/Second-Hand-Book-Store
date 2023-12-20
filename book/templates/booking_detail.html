@@ -1,0 +1,88 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block body %}
+
+
+<div id="inner_banner" class="inner_banner_section" style="margin-top:10%">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="full">
+          <div class="title-holder">
+            <div class="title-holder-cell text-left">
+              <h1 class="page-title">Booking Detail</h1>
+              <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">booking-detail</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<center>
+|<div class="container2" style="border:1px solid white;width:80% ;">
+<div class="row">
+
+    <div class="col-md-6" style="height:100px;">
+                <center><a href="{% url 'view_product' 0 %}" style="margin-top:1%;width:100%" class="btn btn-lg btn-info text-light text-capitalize"><ion-icon style="margin-right:8px" name="pricetags"></ion-icon>Continue order</a></center>
+    </div>
+
+    <div class="col-md-6" style="height:100px;">
+                <center><a style="margin-top:1%;width:100%;border:1px solid black" class="btn btn-default btn-lg text-dark text-capitalize">Total : {{total.total}}</a></center>
+            </div>
+</div>
+    </div>
+</center>
+{% for i in product %}
+{% if i.id in book %}
+<center>
+    <style>
+        .container2{
+            border:1px solid black;
+            border-radius:6px;
+            margin-bottom:5%;
+        }.container1 ,.contain{
+            border:1px solid black;
+            border-radius:6px;
+            width:70%;
+            border:1px solid black;
+
+        }
+    </style>
+<div class="container2" style="margin-top:2%;height:150px;width:80%">
+    <div class="row" style="height:90%">
+        <div class="col-md-4" style="height:120px">
+            <img src="{{i.image.url}}" style="width:30%;height:100px;border:1px solid darkgray;margin-top:5%">
+        </div>
+
+        <div class="col-md-4" style="height:100px">
+            <h5 style="margin-top:5%">{{i.name}}</h5><hr>
+        <h6>Price : Rs.{{i.price}}</h6>
+        <h6>Quantity : {% getquantity forloop.counter bookingid i.id %}</h6>
+
+        </div>
+            <div class="col-md-4" style="height:100px;">
+                <h4 style="margin-top:15%;color:blue">Booked Successfully</h4>
+        </div>
+    </div>
+</div>
+    </center>
+{% endif %}
+{% endfor %}
+|<div class="container" style="border:1px solid white">
+<div class="row">
+
+    <div class="col-md-6" style="height:100px;">
+                <center><a href="{% url 'view_product' 0 %}" style="margin-top:1%;width:100%" class="btn btn-lg btn-info text-light text-capitalize"><ion-icon style="margin-right:8px" name="pricetags"></ion-icon>Continue Order</a></center>
+            </div>
+
+    <div class="col-md-6" style="height:100px;">
+                <center><a style="margin-top:1%;width:100%;border:1px solid black" class="btn btn-default btn-lg text-dark text-capitalize">Total : {{total.total}}</a></center>
+            </div>
+</div>
+    </div>
+{% endblock %}

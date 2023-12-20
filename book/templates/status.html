@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+
+      <div class="crumbs text-center" style="margin-top:10%">
+        <div class="container">
+            <div class="row">
+                <ul class="btn-group btn-breadcrumb bc-list">
+                    <li class="btn btn1">
+                        <a href="{% url 'home' %}">
+                            <i class="glyphicon glyphicon-home"></i>
+                        </a>
+                    </li>
+                    <li class="btn btn2">
+                        <a href="#">Change Status to Sold</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="padding_layout_1">
+      <div class="container">
+      <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <form class="forms-sample" action="" method="post">
+                  {% csrf_token %}
+                  <div class="form-group col-md-12">
+                    <label for="exampleInputEmail1">Sold to</label>
+                    <select id="inputState" class="form-control" name="sold_to" required>
+                          
+                      <option value="Sold">-----Select User------</option>
+                      {% for i in pro %}
+                        <option value="{{i.user.id}}">{{i.user.first_name}} {{i.user.last_name}} ({{i.user.email}}) </option>
+                      {% endfor %}
+                        
+                    </select>
+                  </div>
+                  <div class="form-group col-md-12">
+                      <label for="inputState">Status</label>
+                      <select id="inputState" class="form-control" name="status" required>
+                          
+                        <option value="Sold">-----Select Status------</option>
+                        <option value="Sold">Sold</option>
+                        <option value="Available">Available</option>
+                          
+                      </select>
+                    </div>
+                <div class="form-group col-md-12">
+                  <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+{% endblock %}

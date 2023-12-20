@@ -1,0 +1,114 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="crumbs text-center" style="margin-top:10%">
+    <div class="container">
+        <div class="row">
+            <ul class="btn-group btn-breadcrumb bc-list">
+                <li class="btn btn1">
+                    <a href="index.html">
+                        <i class="glyphicon glyphicon-home"></i>
+                    </a>
+                </li>
+                <li class="btn btn2">
+                    <a href="shop.html">My Books catalogue</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--//breadcrumbs ends here-->
+<!-- Shop -->
+<div class="innerf-pages section">
+    <div class="container-cart">
+        <!-- product left -->
+        
+        <!-- //product left -->
+        <!-- product right -->
+        <div class="left-ads-display col-md-9">
+            <div class="wrapper_top_shop">
+                <!-- product-sec1 -->
+                <div class="product-sec1">
+                    <!-- row1-->
+                    {% for i in pro1 %}
+                    <div class="col-md-3 product-men">
+                        <div class="product-chr-info chr">
+                            <div class="thumbnail">
+                                <a href="{% url 'product_detail' i.id %}">
+                                    <img src="{{i.image.url}}" alt="">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h4>{{i.name}}</h4>
+                                <p>{{i.author}}</p>
+                                <div class="matrlf-mid">
+                                    <ul class="rating">
+                                        <li>
+                                            <a href="#">
+                                                <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="fa fa-star gray-star" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="fa fa-star gray-star" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul class="price-list">
+                                        <li>$ {{i.price}}.00</li>
+                                        <li>
+                                            $200.00
+                                        </li>
+                                    </ul>
+
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <a href="{% url 'edit_product' i.id %}">
+                                    <button class="chr-cart pchr-cart">Edit
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </a>
+
+                                <a href="{% url 'sold_product' i.id %}">
+                                    <button class="chr-cart pchr-cart">Click to sold
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </a>    
+                                
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <h4>No Any Books Available</h4>
+                    {% endfor %}
+                    
+                    <div class="clearfix"></div>
+
+                </div>
+
+                <!-- //product-sec1 -->
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+</div>
+
+{% endblock %}

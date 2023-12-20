@@ -1,0 +1,147 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+        <!-- banner -->
+        <div class="banner-bg-inner">
+            <!-- banner-text -->
+            <div class="banner-text-inner">
+                <div class="container">
+                    <h2 class="title-inner">
+                        Buy & Sell Old Books
+                    </h2>
+
+                </div>
+            </div>
+            <!-- //banner-text -->
+        </div>
+        <!-- //banner -->
+        <!-- breadcrumbs -->
+        <div class="crumbs text-center">
+            <div class="container">
+                <div class="row">
+                    <ul class="btn-group btn-breadcrumb bc-list">
+                        <li class="btn btn1">
+                            <a href="index.html">
+                                <i class="glyphicon glyphicon-home"></i>
+                            </a>
+                        </li>
+                        <li class="btn btn2">
+                            <a href="login.html">sign in & sign up</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--//breadcrumbs ends here-->
+        <!-- signin and signup form -->
+        <div class="login-form section text-center">
+            <div class="container">
+                <h4 class="rad-txt">
+                    <span class="abtxt1">Sign in</span>
+                    <span class="abtext">sign up</span>
+                </h4>
+                
+                <div id="loginbox" style="margin-top:50px" class="mainbox loginbox">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Registration Form</div>
+                            <div style="float:right; font-size: 85%; position: relative; top:-10px">
+                                <a id="signinlink" href="/login">Sign In</a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form id="loginform" class="form-horizontal" action="/signup" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div id="signupalert" style="display:none" class="alert alert-danger">
+                                    <p>Error:</p>
+                                    <span></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 col-sm-3 col-xs-3 control-label">Username</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <input type="text" class="form-control" name="uname" placeholder="username" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 col-sm-3 col-xs-3 control-label">Email</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <input type="email" class="form-control" name="email" placeholder="Email Address" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 col-sm-3 col-xs-3 control-label">First Name</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <input type="text" class="form-control" name="fname" placeholder="First Name" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 col-sm-3 col-xs-3 control-label">Last Name</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <input type="text" class="form-control" name="lname" placeholder="Last Name" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 col-sm-3 col-xs-3 control-label">Password</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <input type="password" class="form-control" name="pwd" placeholder="Password" required="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 col-sm-3 col-xs-3 control-label">Date of Birth</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <input type="date" class="form-control" name="date" placeholder="Date of Birth" required="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 col-sm-3 col-xs-3 control-label">City</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <input type="text" class="form-control" name="city" placeholder="city" required="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 col-sm-3 col-xs-3 control-label">Address</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <input type="text" class="form-control" name="add" placeholder="Address" required="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 col-sm-3 col-xs-3 control-label">Phone Number</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <input type="text" class="form-control" name="contact" placeholder="Phone Number" required="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 col-sm-3 col-xs-3 control-label">Image</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <input type="file" class="form-control" name="img" required="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- Button -->
+                                    <div class="signup-btn">
+                                        <button id="btn-signup" type="submit" class="btn btn-info">
+                                            <i class="icon-hand-right"></i> &nbsp; Sign Up</button>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if error %}
+    <script>
+        alert('Regitered Successfully');
+        window.location = "{% url 'login' %}";
+    </script>
+    {% endif %}
+{% endblock %}

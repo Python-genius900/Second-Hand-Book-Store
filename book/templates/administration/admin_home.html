@@ -1,0 +1,105 @@
+
+{% extends 'administration/index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+      
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+          <div class="card">
+            
+            <div class="card-body">
+              
+              <div class="row">
+                
+                <div class="col-9">
+                  <div class="d-flex align-items-center align-self-start">
+                    <h3 class="mb-0">{{total_customer}}</h3>
+                    
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="icon icon-box-success ">
+                    <span class="mdi mdi-arrow-top-right icon-item"></span>
+                  </div>
+                </div>
+              </div>
+               <h6><a herf="{% url 'view_user' %}">Total Users</a></h6>
+            </div>
+          
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+          <div class="card">
+            
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <div class="d-flex align-items-center align-self-start">
+                    <h3 class="mb-0">{{total_book}}</h3>
+                    
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="icon icon-box-success">
+                    <span class="mdi mdi-arrow-top-right icon-item"></span>
+                  </div>
+                </div>
+              </div>
+              <a herf="{% url 'admin_viewBooking' %}"><h6>Total Order</h6></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+          <div class="card">
+            
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <div class="d-flex align-items-center align-self-start">
+                    <h3 class="mb-0">{{total_pro}}</h3>
+                    
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="icon icon-box-danger">
+                    <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+                  </div>
+                </div>
+              </div>
+              <a herf="{% url 'admin_view_product' %}"><h6>Total Books</h6></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+          <div class="card">
+            
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <div class="d-flex align-items-center align-self-start">
+                    <h3 class="mb-0">{{total_feedback}}</h3>
+                    
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="icon icon-box-success ">
+                    <span class="mdi mdi-arrow-top-right icon-item"></span>
+                  </div>
+                </div>
+              </div>
+              <a herf="{% url 'view_feedback' %}"><h6>Total Feedback</h6></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      
+      
+    </div>
+
+    {% endblock %}
