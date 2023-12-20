@@ -16,9 +16,9 @@
 
 # Goal:
 
-=> The project is basically targeted at those people who would like to purchase and learn books and have an internet access.
-=> Finally book lovers cusrious in comparing the price of books for thier selected catergory.
-=> To make a database that is consistent, reliable and secure.
-=> To provide correct, complete and ongoing information.
-=> To Develop a well-organized information storage system.
-=> To make good documentation so as to facilitate possible future enhancements.
+* The project is basically targeted at those people who would like to purchase and learn books and have an internet access.
+* Finally book lovers cusrious in comparing the price of books for thier selected catergory.
+* To make a database that is consistent, reliable and secure.
+* To provide correct, complete and ongoing information.
+* To Develop a well-organized information storage system.
+* To make good documentation so as to facilitate possible future enhancements.
