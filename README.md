@@ -23,5 +23,5 @@
 * To Develop a well-organized information storage system.
 * To make good documentation so as to facilitate possible future enhancements.
 
-#Purpose:
+# Purpose:
 The main purpose of this web based project is to manage the online shopping of second hand books. It helps to customers to search book via category, subcategory, book title and author name from anywhere and anytime. Also make payment online for it. It helps people to find and purchase books online.
