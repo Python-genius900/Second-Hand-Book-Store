@@ -86,7 +86,7 @@ run the server
 
 
 ## Acknowledgements
-- [GeekforGeeks](https://www.geekforgeeks.org/python-django/)
+- [GeeksforGeeks](https://www.geeksforgeeks.org/python-django/)
 - [Javatpoint](https://www.javatpoint.com)
 - [Python](https://www.python.org/)
 - [Two Scoops of Django: Best Practices for Django 1.11 by Daniel and Audrey Roy Greenfeld](https://g.co/kgs/HKfEogg)
